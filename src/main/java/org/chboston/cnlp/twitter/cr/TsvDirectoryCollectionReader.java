@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +22,7 @@ import org.apache.uima.jcas.JCas;
 import org.apache.uima.resource.ResourceInitializationException;
 import org.apache.uima.util.Progress;
 import org.apache.uima.util.ProgressImpl;
+import org.chboston.cnlp.twitter.Tweet;
 
 public class TsvDirectoryCollectionReader extends CasCollectionReader_ImplBase {
 
@@ -67,8 +69,31 @@ public class TsvDirectoryCollectionReader extends CasCollectionReader_ImplBase {
       throw new CollectionException(e);
     }
     
-    jcas.setDocumentText(nextLine);
+    String[] fields = nextLine.split("\\t");
+    Tweet tweet = null;
+    try {
+      tweet = new Tweet(nextLine);
+    } catch (ParseException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
     
+    jcas.setDocumentText(tweet.getMessage());
+    
+    try {
+      jcas.createView("Geolocation");
+      jcas.getView("Geolocation").setDocumentText(tweet.getLocation());
+      
+      jcas.createView("Date");
+      jcas.getView("Date").setDocumentText(tweet.getDate());
+      
+      jcas.createView("User");
+      jcas.getView("User").setDocumentText(tweet.getUser());
+      
+    } catch (CASException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
   }
 
   @Override

@@ -45,4 +45,12 @@ public class Tweet {
   public String getLocation(){
     return this.location;
   }
+  
+  public String getUser(){
+    return this.user;
+  }
+  
+  public String getDate(){
+    return tweetDate.toString();
+  }
 }

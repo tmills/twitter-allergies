@@ -14,12 +14,22 @@
   	<dependency>
   		<groupId>org.apache.ctakes</groupId>
   		<artifactId>ctakes-dictionary-lookup-fast</artifactId>
-  		<version>3.2.1</version>
+  		<version>3.2.2</version>
   	</dependency>
   	<dependency>
   		<groupId>org.apache.directory.studio</groupId>
   		<artifactId>org.apache.commons.io</artifactId>
   		<version>2.4</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.google.apis</groupId>
+  		<artifactId>google-api-services-mapsengine</artifactId>
+  		<version>v1-rev60-1.20.0</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.apache.ctakes</groupId>
+  		<artifactId>ctakes-clinical-pipeline</artifactId>
+  		<version>3.2.2</version>
   	</dependency>
   </dependencies>
 </project>
